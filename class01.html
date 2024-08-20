@@ -3,9 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>First class</title>
 </head>
 <body>
+    <div class="Container">
+        <h1>Fernando Counter Types</h1>
+        <p>Fer said the word type <span id="total">0</span> times</p>
+        <button id="increment-button">+ 1 type</button>
+        <button id="decrement-button">- 1 type</button>
+    </div>
     
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        //selector | action or event  
+        $(document).ready(function(){
+            //here your code
+            //first solution
+            /*$('#increment-button').click(function(){
+                let total = parseInt($('#total').text()) + 1;
+                $('#total').text(total);
+            });
+
+            $('#decrement-button').click(function(){
+                let total = parseInt($('#total').text());
+                if(total > 0){
+                    total--;
+                }
+                $('#total').text(total);
+            })*/
+
+            $('#increment-button, #decrement-button').click(function(){
+                let clickButton = $(this).attr('id');
+                let total = parseInt($('#total').text());
+                if(clickButton == 'increment-button'){
+                    total++;
+                }else{
+                    if(total > 0){
+                        total--;
+                    }
+                }
+                $('#total').text(total);
+            });
+        });
+    </script>
 </body>
 </html>
