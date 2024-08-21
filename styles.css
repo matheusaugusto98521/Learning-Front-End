@@ -6,8 +6,8 @@ html, body{
 }
 
 .container{
-    background-color: green;
-    color: white;
+    background-color: rgba(0,0,0,0.1); 
+    color: black;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,17 +27,21 @@ html, body{
     font-size: 12pt;
     font-weight: bold;
     color: white;
+    
 }
 
 .container button:hover{
     background-color:blueviolet;
+    
 }
 
 .container p{
     font-size: 20pt;
     font-weight: bold;
+    
 }
 
 .container h1{
     font-size: 25pt;
+    
 }

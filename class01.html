@@ -34,7 +34,8 @@
                 $('#total').text(total);
             })*/
 
-            $('#increment-button, #decrement-button').click(function(){
+            //solution 2
+            /*$('#increment-button, #decrement-button').click(function(){
                 let clickButton = $(this).attr('id');
                 let total = parseInt($('#total').text());
                 if(clickButton == 'increment-button'){
@@ -44,6 +45,14 @@
                         total--;
                     }
                 }
+                $('#total').text(total);
+            });*/
+
+            $('#increment-button, #decrement-button').click(function(){
+                let clickButton = $(this).attr('id');
+                let currentTotal = parseInt($('#total').text());
+                let total = clickButton == "increment-button" ? ++currentTotal : --currentTotal;
+                total = total < 0 ? 0 : total;
                 $('#total').text(total);
             });
         });
