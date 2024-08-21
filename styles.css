@@ -42,6 +42,22 @@ html, body{
 }
 
 .container h1{
-    font-size: 25pt;
-    
+    font-size: 25pt;    
+}
+
+.container input{
+    width: 25%;
+    height: 1.5rem;
+}
+
+#username, #password{
+    margin: 1rem;
+}
+
+.success{
+    background-color: rgba(0, 255, 0, 0.5);
+} 
+
+.error{
+    background-color: rgba(255, 0, 0, 0.6);
 }
