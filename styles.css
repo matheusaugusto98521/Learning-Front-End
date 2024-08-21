@@ -1,0 +1,43 @@
+html, body{
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container{
+    background-color: green;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 5%;
+}
+
+.container button{
+    width: 25%;
+    height: 2em;
+    background-color: #00f;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    margin: 1rem;
+    font-size: 12pt;
+    font-weight: bold;
+    color: white;
+}
+
+.container button:hover{
+    background-color:blueviolet;
+}
+
+.container p{
+    font-size: 20pt;
+    font-weight: bold;
+}
+
+.container h1{
+    font-size: 25pt;
+}
