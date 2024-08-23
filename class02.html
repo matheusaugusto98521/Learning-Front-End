@@ -1,83 +1,96 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>First class</title>
     <link rel="stylesheet" href="./styles.css">
 </head>
+
 <body>
     <div class="container">
         <h1>Qual é o elixir dos deuses?</h1>
-        <input type="text" id="question"/>
+        <input type="text" id="question" />
         <button id="btn-respond">Resposta</button>
         <button id="btn-response">Ver resposta</button>
     </div>
-    
+
     <hr>
 
     <div class="container">
         <h1>Login in your account</h1>
-        <input type="text" id="username"/>
-        <input type="password" id="password"/>
-        <button id="login" >Login</button>
+        <input type="text" id="username" />
+        <input type="password" id="password" />
+        <button id="login">Login</button>
         <button id="btn-disable">Disable</button>
         <button id="btn-enable" name="btn-enabled">Enable</button>
         <button id="btn-showPasswd">Show password</button>
         <button id="btn-hidePasswd">Hide password</button>
         <button id="btn-type">Type</button>
     </div>
-    
-    
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script>
         //selector | action or event  
-        $(document).ready(function(){
-            $('#btn-respond').click(function(){
+        $(document).ready(function () {
+            $('#btn-respond').click(function () {
                 let valueInput = $('#question').val();
-                let message = valueInput == "Coffee" || "coffee" ? 'Correct': 'Error';
+                let message = valueInput == "Coffee" || "coffee" ? 'Correct' : 'Error';
                 alert(message);
             });
 
-            $('#btn-response').click(function(){
+            $('#btn-response').click(function () {
                 $('#question').val('Coffee');
             });
 
-            $('#login').click(function(){
+            $('#login').click(function () {
                 let user = $('#username').val();
                 let password = $('#password').val();
-                if(user == "matheus" && password == "123"){
+                if (user == "matheus" && password == "123") {
                     $('#username, #password').removeClass('error');
                     $('#username, #password').addClass('success');
                     alert("SUCCESS");
-                }else{
+                } else {
                     $('#username, #password').removeClass('success');
                     $('#username, #password').addClass('error');
                     alert("ERROR");
                 }
             });
 
-            $('#btn-disable').click(function(){
-                $('#username, #password, #login').attr('disabled', 'disabled');
-            });
-
-            $('#btn-enable').click(function(){
-                $('#username, #password, #login').removeAttr('disabled', 'disabled'); 
-            });
-
-            $('#btn-showPasswd').click(function(){
-                $('#password').attr('type', 'text');
-            });
-
-            $('#btn-hidePasswd').click(function(){
-                $('#password').attr('type', 'password');
-            });
-
-            $('#btn-type').click(function(){
+            $('#btn-type').click(function () {
                 let type = $('#password').attr('type');
                 alert(type);
             });
+
+            $('#btn-enable, #btn-disable, #btn-hidePasswd, #btn-showPasswd').click(function () {
+                let clickedButton = $(this).attr('id');
+
+                if (clickedButton == 'btn-disable') {
+                    $('#username, #password, #login').attr('disabled', 'disabled');
+                    $('#btn-disable').hide();
+                    $('#btn-enable').show();
+                } else {
+                    $('#username, #password, #login').removeAttr('disabled', 'disabled');
+                    $('#btn-disable').show();
+                    $('#btn-enable').hide();
+                }
+
+                if (clickedButton == 'btn-showPasswd') {
+                    $('#password').attr('type', 'text');
+                    $('#btn-hidePasswd').show();
+                    $('#btn-showPasswd').hide();
+                } else {
+                    $('#password').attr('type', 'password');
+                    $('#btn-showPasswd').show();
+                    $('#btn-hidePasswd').hide();
+                }
+            });
+
         });
     </script>
 </body>
+
 </html>
