@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Third class</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Lista de compras</h1>
+        <ol>
+            <li>Café em grãos</li>
+            <li>Cappuccino</li>
+        </ol>
+
+        <hr>
+
+        <input type="text" id="product" />
+        <button id="btn-prepend">Adicionar Produto Inicio</button>
+        <button id="btn-append">Adicionar Produto Fim</button>
+        
+        <hr>
+        
+        <button id="btn-before">Adicionar Produto Inicio Fora</button>
+        <button id="btn-after">Adicionar Produto Fim Fora</button>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        //selector | action or event  
+        $(document).ready(function () {
+            $('#btn-prepend, #btn-append').click(function () {
+                let clickedButton = $(this).attr('id');
+                let product = $('#product').val();
+                let content = `<li>${product}</li>`;
+                if (clickedButton == 'btn-prepend') {
+                    $('ol').prepend(content);
+                } else {
+                    $('ol').append(content);
+                }
+            });
+            
+            $('#btn-before, #btn-after').click(function () {
+                let clickedButton = $(this).attr('id');
+                let product = $('#product').val();
+                let content = `<li>${product}</li>`;
+                if (clickedButton == 'btn-after') {
+                    $('ol').after(content);
+                } else {
+                    $('ol').before(content);
+                }
+            });
+
+            
+        });
+    </script>
+</body>
+
+</html>
