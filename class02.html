@@ -33,17 +33,19 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script>
-        //selector | action or event  
-        $(document).ready(function () {
-            $('#btn-respond').click(function () {
+        <script>
+            //selector | action or event  
+            $(document).ready(function () {
+                $('#btn-enable').hide();
+                $('#btn-hidePasswd').hide();
+                $('#btn-respond').click(function () {
                 let valueInput = $('#question').val();
-                let message = valueInput == "Coffee" || "coffee" ? 'Correct' : 'Error';
+                let message = valueInput == "coffee" ? 'Correct' : 'Error';
                 alert(message);
             });
 
             $('#btn-response').click(function () {
-                $('#question').val('Coffee');
+                $('#question').val('coffee');
             });
 
             $('#login').click(function () {
@@ -67,7 +69,6 @@
 
             $('#btn-enable, #btn-disable, #btn-hidePasswd, #btn-showPasswd').click(function () {
                 let clickedButton = $(this).attr('id');
-
                 if (clickedButton == 'btn-disable') {
                     $('#username, #password, #login').attr('disabled', 'disabled');
                     $('#btn-disable').hide();
