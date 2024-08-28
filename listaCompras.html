@@ -1,0 +1,186 @@
+<!-- 
+Faculdade de Tecnologia de Lins - Prof Antonio Seabra 
+Prof. Felipe Maciel - felipe.maciel@fateclins.edu.br
+********************************************************************************************
+
+Funcionamento:
+[ADICIONAR PRODUTO]
+Após o usuário preencher os dois campos (produto e quantidade), escolher em qual lista (lista1 ou lista2) ele e clicar no botão [ADICIONAR], deve-se adicionar o item com a quantidade na lista (1 ou 2) escolhida seguindo o padrão da estrutura html já contida no exemplo para cada item adicionado na lista. A cada produto adicionado deve-se limpar os campos (produto, quantidade e lista) para que sejam inseridos novos valores.
+
+[REMOVER ITEM INDIVIDUAL]
+Ao clicar no x contido em cada item deve-se apagar o respectivo item.
+
+[ZERAR LISTA]
+Ao clicar no botão [LIMPAR LISTA] deve-se limpar todos os itens da respectiva lista.
+
+[EXTRA]
+Ao clicar no botão [ADICIONAR] não deve-se fechar o modal para que facilite a inclusão de N itens às listas.
+-->
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:mso="urn:schemas-microsoft-com:office:office"
+    xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        nav span {
+            font-size: 32px;
+        }
+
+        nav {
+            text-align: center;
+        }
+    </style>
+
+
+    <!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:xd_Signature msdt:dt="string"></mso:xd_Signature>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor msdt:dt="string">SharePoint App</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Editor>
+<mso:Order msdt:dt="string">600.000000000000</mso:Order>
+<mso:xd_ProgID msdt:dt="string"></mso:xd_ProgID>
+<mso:_ExtendedDescription msdt:dt="string"></mso:_ExtendedDescription>
+<mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author msdt:dt="string">SharePoint App</mso:display_urn_x003a_schemas-microsoft-com_x003a_office_x003a_office_x0023_Author>
+<mso:ComplianceAssetId msdt:dt="string"></mso:ComplianceAssetId>
+<mso:TemplateUrl msdt:dt="string"></mso:TemplateUrl>
+<mso:ReferenceId msdt:dt="string"></mso:ReferenceId>
+<mso:ContentTypeId msdt:dt="string">0x01010038A21CF08B114B4A9D5914456BEB43B4</mso:ContentTypeId>
+<mso:TriggerFlowInfo msdt:dt="string"></mso:TriggerFlowInfo>
+<mso:_SourceUrl msdt:dt="string"></mso:_SourceUrl>
+<mso:_SharedFileIndex msdt:dt="string"></mso:_SharedFileIndex>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+
+<body>
+    <main>
+        <nav class="teal">
+            <span>Lista de Compras</span>
+        </nav>
+        <div class="row" id="lista-compras">
+
+
+
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-content">
+                        <h5>Lista de Compras #1</h5><br />
+                        <ul class="collection" id="list-1">
+                            <li class="collection-item">4 - Cafés
+                                <span class="badge">
+                                    <i data-lista="1" class="material-icons">close</i>
+                                </span>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="card-action">
+                        <button class="btn" id="btn-clean-lista-1">limpar lista</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col s12 m6">
+                <div class="card">
+                    <div class="card-content">
+                        <h5>Lista de Compras #2</h5><br />
+                        <ul class="collection" id="list-2">
+                            <li class="collection-item">2 Leites
+                                <span class="badge">
+                                    <i data-lista="2" class="material-icons">close</i>
+                                </span>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <div class="card-action">
+                        <button class="btn" id="btn-clean-lista-2">limpar lista</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+        <div class="fixed-action-btn">
+            <a class="btn-floating btn-large red modal-trigger" href="#modal1">
+                <i class="large material-icons">add</i>
+            </a>
+        </div>
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <h4>Adicionar item</h4>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="Digite o nome do item" id="item" type="text">
+                    </div>
+                    <div class="input-field col s2">
+                        <input id="quantidade" type="number">
+                    </div>
+                    <div class="input-field col s4">
+                        <select>
+                            <option value="">Selecione a lista</option>
+                            <option value="lista1">Lista #1</option>
+                            <option value="lista2">Lista #2</option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-light btn tear" id="btn-add">Adicionar</a>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            //nao apague estas linhas
+            $('select').formSelect();
+            $('.fixed-action-btn').floatingActionButton();
+            $('.modal').modal();
+
+            $('#btn-add').click(function () {
+                let product = $('#item').val();
+                let quantity = $('#quantidade').val();
+                let option = $('select').val();
+                let content = `<li class="collection-item" >${quantity} - ${product} 
+                    <span class="badge">
+                        <i data-lista="${option}" class="material-icons">close</i>
+                        </span>
+                        </li>`;
+                if (option == 'lista1') {
+                    $('#list-1').append(content);
+                } else {
+                    $('#list-2').append(content);
+                }
+            });
+
+            $('#btn-clean-lista-1, #btn-clean-lista-2').click(function () {
+                let clickedButton = $(this).attr('id');
+                if (clickedButton == 'btn-clean-lista-1') {
+                    $('#list-1').empty();
+                } else {
+                    $('#list-2').empty();
+                }
+            });
+
+            $('i').click(function () {
+                $(this).parent().parent().remove();
+            });
+
+
+
+        });
+    </script>
+</body>
+
+</html>
