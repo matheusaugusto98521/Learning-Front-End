@@ -134,7 +134,7 @@ Ao clicar no botão [ADICIONAR] não deve-se fechar o modal para que facilite a 
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-light btn tear" id="btn-add">Adicionar</a>
+                <a href="#!" class="waves-effect waves-light btn tear" id="btn-add">Adicionar</a>
             </div>
         </div>
     </main>
@@ -162,6 +162,11 @@ Ao clicar no botão [ADICIONAR] não deve-se fechar o modal para que facilite a 
                 } else {
                     $('#list-2').append(content);
                 }
+
+                $('#item').val('');
+                $('#quantidade').val('');
+                $('select').formSelect('destroy');
+                $('select').formSelect();
             });
 
             $('#btn-clean-lista-1, #btn-clean-lista-2').click(function () {
