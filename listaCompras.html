@@ -166,6 +166,11 @@ Ao clicar no botão [ADICIONAR] não deve-se fechar o modal para que facilite a 
                 } else {
                     $('#list-2').append(content);
                 }
+
+                $('#item').val('');
+                $('#quantidade').val('');
+                $('select').formSelect('destroy');
+                $('select').formSelect();
             });
 
             $('#btn-clean-lista-1, #btn-clean-lista-2').click(function () {
