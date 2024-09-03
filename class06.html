@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First class</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <input type="text" name="cpf" id="cpf" placeholder="Digite o seu CPF">
+        <select id="estado">
+            <option value="#">Selecione seu estado</option>
+            <option value="sp">SP</option>
+            <option value="rj">RJ</option>
+            <option value="mg">MG</option>
+            <option value="es">ES</option>
+        </select>
+
+        <p></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        //selector | action or event  
+        $(document).ready(function () {
+            $('#cpf').blur(function(){
+                let valorDigitado = parseInt($(this).val());
+                let isTrue = valorDigitado % 2 === 0 ? true : false;
+                if (!isTrue){
+                    $('p').html('CPF inválido')
+                }else{
+                    $('p').html('');
+                }
+            });
+
+            $('#estado').change(function(){
+                let valorSelecionado = $(this).val();
+                alert(valorSelecionado);
+            });
+        });
+    </script>
+</body>
+
+</html>
