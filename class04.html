@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First class</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, quia ducimus perspiciatis doloribus
+            neque tempore numquam? Eligendi, voluptatem fuga odit nemo sit inventore ratione architecto nam. Sunt
+            quibusdam beatae mollitia?
+        </p>
+
+        <button id="hide">Hide</button>
+        <button id="show">Show</button>
+        <button id="toggle">Toggle</button>
+        <button id="fadein">FadeIn</button>
+        <button id="fadeout">FadeOut</button>
+        <button id="fadetoggle">FadeToggle</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        //selector | action or event  
+        $(document).ready(function () {
+            $('#hide, #show, #toggle, #fadein, #fadeout, #fadetoggle').click(function () {
+                let clickedButton = $(this).attr('id');
+                switch (clickedButton) {
+                    case 'hide':
+                        $('p').hide();
+                        break;
+                    case 'show':
+                        $('p').show();
+                        break;
+                    case 'toggle':
+                        $('p').toggle();
+                        break;
+                    case 'fadein':
+                        $('p').fadeIn();
+                        break;
+                    case 'fadeout':
+                        $('p').fadeOut();
+                        break;
+                    default:
+                        $('p').fadeToggle();
+                        break;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

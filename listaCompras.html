@@ -35,6 +35,10 @@ Ao clicar no botão [ADICIONAR] não deve-se fechar o modal para que facilite a 
         nav {
             text-align: center;
         }
+        
+        i{
+            cursor: pointer;
+        }
     </style>
 
 
@@ -66,7 +70,7 @@ Ao clicar no botão [ADICIONAR] não deve-se fechar o modal para que facilite a 
 
 
 
-            <div class="col s12 m6">
+            <div id="lista-1-div" class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
                         <h5>Lista de Compras #1</h5><br />
@@ -86,7 +90,7 @@ Ao clicar no botão [ADICIONAR] não deve-se fechar o modal para que facilite a 
             </div>
 
 
-            <div class="col s12 m6">
+            <div id="lista-2-div" class="col s12 m6">
                 <div class="card">
                     <div class="card-content">
                         <h5>Lista de Compras #2</h5><br />
@@ -134,7 +138,7 @@ Ao clicar no botão [ADICIONAR] não deve-se fechar o modal para que facilite a 
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-light btn tear" id="btn-add">Adicionar</a>
+                <a href="#!" class="waves-effect waves-light btn tear" id="btn-add">Adicionar</a>
             </div>
         </div>
     </main>
@@ -173,7 +177,7 @@ Ao clicar no botão [ADICIONAR] não deve-se fechar o modal para que facilite a 
                 }
             });
 
-            $('i').click(function () {
+            $('#lista-1-div, #lista-2-div').on('click','i', function () {
                 $(this).parent().parent().remove();
             });
 
