@@ -35,8 +35,8 @@ Ao clicar no botão [ADICIONAR] não deve-se fechar o modal para que facilite a 
         nav {
             text-align: center;
         }
-        
-        i{
+
+        i {
             cursor: pointer;
         }
     </style>
@@ -75,11 +75,7 @@ Ao clicar no botão [ADICIONAR] não deve-se fechar o modal para que facilite a 
                     <div class="card-content">
                         <h5>Lista de Compras #1</h5><br />
                         <ul class="collection" id="list-1">
-                            <li class="collection-item">4 - Cafés
-                                <span class="badge">
-                                    <i data-lista="1" class="material-icons">close</i>
-                                </span>
-                            </li>
+
                         </ul>
 
                     </div>
@@ -95,11 +91,7 @@ Ao clicar no botão [ADICIONAR] não deve-se fechar o modal para que facilite a 
                     <div class="card-content">
                         <h5>Lista de Compras #2</h5><br />
                         <ul class="collection" id="list-2">
-                            <li class="collection-item">2 Leites
-                                <span class="badge">
-                                    <i data-lista="2" class="material-icons">close</i>
-                                </span>
-                            </li>
+
                         </ul>
 
                     </div>
@@ -128,9 +120,8 @@ Ao clicar no botão [ADICIONAR] não deve-se fechar o modal para que facilite a 
                         <input id="quantidade" type="number">
                     </div>
                     <div class="input-field col s4">
-                        <select>
-                            <option value="">Selecione a lista</option>
-                            <option value="lista1">Lista #1</option>
+                        <select id="list">
+                            <option value="lista1" selected>Lista #1</option>
                             <option value="lista2">Lista #2</option>
                         </select>
                     </div>
@@ -152,39 +143,85 @@ Ao clicar no botão [ADICIONAR] não deve-se fechar o modal para que facilite a 
             $('.fixed-action-btn').floatingActionButton();
             $('.modal').modal();
 
+            const list1 = [];
+            const list2 = [];
+
+            function fetchList(arr, element) {
+                let content = '';
+                arr.forEach(function (item, index) {
+                    content += `
+                                <li class="collection-item">${item.quantidade} 
+                                    - ${item.nome}
+                                    <span class="badge" data-index="${index}" data-list="${element}">
+                                        <i data-lista="1" class="material-icons">close</i>
+                                    </span>
+                                </li>
+                            `;
+                });
+                $(element).empty().append(content);
+            };
+
             $('#btn-add').click(function () {
-                let product = $('#item').val();
-                let quantity = $('#quantidade').val();
-                let option = $('select').val();
-                let content = `<li class="collection-item" >${quantity} - ${product} 
-                    <span class="badge">
-                        <i data-lista="${option}" class="material-icons">close</i>
-                        </span>
-                        </li>`;
-                if (option == 'lista1') {
-                    $('#list-1').append(content);
-                } else {
-                    $('#list-2').append(content);
-                }
+                const item = {};
+                item.nome = $('#item').val();
+                item.quantidade = $('#quantidade').val();
+                let list = $('#list').val();
 
-                $('#item').val('');
-                $('#quantidade').val('');
-                $('select').formSelect('destroy');
-                $('select').formSelect();
-            });
-
-            $('#btn-clean-lista-1, #btn-clean-lista-2').click(function () {
-                let clickedButton = $(this).attr('id');
-                if (clickedButton == 'btn-clean-lista-1') {
-                    $('#list-1').empty();
+                if (list == 'lista1') {
+                    list1.push(item);
+                    fetchList(list1, '#list-1');
                 } else {
-                    $('#list-2').empty();
+                    list2.push(item);
+                    fetchList(list2, '#list-2');
                 }
             });
 
-            $('#lista-1-div, #lista-2-div').on('click','i', function () {
-                $(this).parent().parent().remove();
+            $('.collection').on('click', '.badge', function(){
+                //$(this).parent().remove();
+                let index = $(this).attr('data-index');
+                let list = $(this).attr('data-list');
+                if(list == '#list-1'){
+                    list1.splice(index, 1);
+                    fetchList(list1, list);
+                }else{
+                    list1.splice(index, 1);
+                    fetchList(list2, list);
+                }
             });
+
+            /* $('#btn-add').click(function () {
+                 let product = $('#item').val();
+                 let quantity = $('#quantidade').val();
+                 let option = $('select').val();
+                 let content = `<li class="collection-item" >${quantity} - ${product} 
+                     <span class="badge">
+                         <i data-lista="${option}" class="material-icons">close</i>
+                         </span>
+                         </li>`;
+                 if (option == 'lista1') {
+                     $('#list-1').append(content);
+                 } else {
+                     $('#list-2').append(content);
+                 }
+ 
+                 $('#item').val('');
+                 $('#quantidade').val('');
+                 $('select').formSelect('destroy');
+                 $('select').formSelect();
+             });
+ 
+             $('#btn-clean-lista-1, #btn-clean-lista-2').click(function () {
+                 let clickedButton = $(this).attr('id');
+                 if (clickedButton == 'btn-clean-lista-1') {
+                     $('#list-1').empty();
+                 } else {
+                     $('#list-2').empty();
+                 }
+             });
+ 
+             $('#lista-1-div, #lista-2-div').on('click','i', function () {
+                 $(this).parent().parent().remove();
+             });*/
 
 
 
